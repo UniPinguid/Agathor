@@ -30,6 +30,12 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         PlayerInput();
+
+        // Example: Trigger the slash animation on left mouse click
+        if (Input.GetMouseButtonDown(0))
+        {
+            playerAnimator.SetTrigger("attack");
+        }
     }
 
     private void FixedUpdate()
