@@ -6,12 +6,14 @@ public class EnemyAI : MonoBehaviour
 {
     private enum State
     {
-        Roaming
+        Roaming,
+        Attacked   
     }
 
     private State state;
     private EnemyPathFinding pathFinding;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     private Vector2 previousPosition;
     private float speed;
@@ -26,6 +28,8 @@ public class EnemyAI : MonoBehaviour
         state = State.Roaming;
         pathFinding = GetComponent<EnemyPathFinding>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         previousPosition = transform.position;
         smoothedDirection = Vector2.zero;
 
