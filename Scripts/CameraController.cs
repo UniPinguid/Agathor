@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController : Singleton<CameraController>
 {
     public Transform player; // The player's transform
     private float smoothSpeed = 0.10f; // The speed of the camera's smoothing
@@ -13,6 +13,11 @@ public class CameraController : MonoBehaviour
         Vector3 desiredPosition = GetDesiredPosition();
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
         transform.position = new Vector3(smoothedPosition.x, smoothedPosition.y, cameraZPosition);
+    }
+
+    public void SetPlayerCameraFollow()
+    {
+        transform.position = PlayerController.Instance.transform.position;
     }
 
     private Vector3 GetDesiredPosition()

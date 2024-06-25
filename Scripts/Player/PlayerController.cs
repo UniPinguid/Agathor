@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     [SerializeField] private float moveSpeed = 1f;
-    public static PlayerController Instance;
 
     private PlayerControls playerControls;
     private Vector2 movement;
@@ -15,9 +15,10 @@ public class PlayerController : MonoBehaviour
     private Animator playerAnimator;
     private SpriteRenderer spriteRenderer;
 
-    private void Awake()
+    protected override void Awake()
     {
-        Instance = this;
+        base.Awake();
+
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
